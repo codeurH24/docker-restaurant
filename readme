@@ -1,1 +1,5 @@
-sudo docker run --rm -i -t -p "8000:80" --name backend -v ${PWD}/volume/public:/app -v ${PWD}/db/mysql:/var/lib/mysql mattrayner/lamp:build-167-1804-php7
+docker/build$ sudo docker build . -t restaurant
+
+sudo docker run --rm -i -t -p 8080:80 -p 8000:5000 --name backend -v ${PWD}/volume:/app -v ${PWD}/db/mysql:/var/lib/mysql restaurant
+
+sudo docker exec -it backend bash
