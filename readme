@@ -1,0 +1,1 @@
+sudo docker run --rm -i -t -p "8000:80" --name backend -v ${PWD}/volume/public:/app -v ${PWD}/db/mysql:/var/lib/mysql mattrayner/lamp:build-167-1804-php7
