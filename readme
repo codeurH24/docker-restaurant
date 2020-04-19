@@ -1,5 +1,20 @@
-docker/build$ sudo docker build . -t restaurant
+docker build docker/build -t restaurant
 
+RUN FOR LINUX
 sudo docker run --rm -i -t -p 8080:80 -p 8000:5000 --name backend -v ${PWD}/volume:/app -v ${PWD}/db/mysql:/var/lib/mysql restaurant
+RUN FOR WINDOWS
+sudo docker run --rm -i -t -p 8080:80 -p 8000:5000 --name backend -v %CD%/volume:/app -v %CD%/db/mysql:/var/lib/mysql restaurant
 
 sudo docker exec -it backend bash
+
+
+CREATE USER FOR MySQL SERVER
+sudo docker exec -it backend mysql -u root -e "create database DATABASE_NAME"
+
+sudo docker exec -it backend mysql -u root -e "CREATE USER 'codeurh24'@'%' IDENTIFIED BY 'password';"
+
+sudo docker exec -it backend mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'codeurh24'@'%';"
+
+sudo docker exec -it backend mysql -u root -e "SHOW GRANTS FOR codeurh24"
+
+/etc/supervisor/conf.d/
